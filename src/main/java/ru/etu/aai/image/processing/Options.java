@@ -1,4 +1,4 @@
-package ru.etu.aai.etu.image.processing;
+package ru.etu.aai.image.processing;
 
 import java.io.FileInputStream;
 import java.io.IOException;
