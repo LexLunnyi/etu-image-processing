@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk-13.0.2\bin\java.exe" -jar target\etu-image-processing-0.0.1-SNAPSHOT.jar target\application.properties
