@@ -10,6 +10,10 @@ abstract class ProcessorConvolution implements ImageProcessor {
     protected int[][] kernel;
     
     @Override
+    public void before(BufferedImage src) {
+    }
+    
+    @Override
     public PixelARGB process(int i, int j, BufferedImage src) {
         int w = src.getWidth();
         int h = src.getHeight();

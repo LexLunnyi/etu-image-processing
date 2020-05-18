@@ -8,10 +8,13 @@ import java.awt.image.BufferedImage;
  */
 public class ProcessorBlackWhite implements ImageProcessor {
     @Override
+    public void before(BufferedImage src) {
+    }
+    
+    @Override
     public PixelARGB process(int i, int j, BufferedImage src) {
         PixelARGB pixel = new PixelARGB(src.getRGB(j, i));
         pixel.makeBlackWhite();
         return pixel;
     }
-    
 }

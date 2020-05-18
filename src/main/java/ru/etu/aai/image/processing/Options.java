@@ -14,6 +14,7 @@ public class Options {
     private String output;
     private int medianSize;
     private int laplacianSize;
+    private int threshold;
     
     public Options(String path) {
         Properties prop = new Properties();
@@ -27,6 +28,7 @@ public class Options {
             output = prop.getProperty("output");
             medianSize = Integer.parseInt(prop.getProperty("median.size"));
             laplacianSize = Integer.parseInt(prop.getProperty("laplacian.size"));
+            threshold = Integer.parseInt(prop.getProperty("threshold.value"));
             
             printProperties();
         } catch (IOException ex) {
@@ -49,6 +51,7 @@ public class Options {
         System.out.println("  output -> " + output);
         System.out.println("  medianSize -> " + medianSize);
         System.out.println("  laplacianSize -> " + laplacianSize);
+        System.out.println("  threshold -> " + threshold);
         System.out.println("-------------------------------------------------------");
     }
 
@@ -66,5 +69,9 @@ public class Options {
 
     public int getLaplacianSize() {
         return laplacianSize;
+    }
+
+    public int getThreshold() {
+        return threshold;
     }
 }

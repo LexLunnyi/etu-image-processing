@@ -8,6 +8,10 @@ import java.awt.image.BufferedImage;
  */
 public class ProcessorStub implements ImageProcessor {
     @Override
+    public void before(BufferedImage src) {
+    }
+    
+    @Override
     public PixelARGB process(int i, int j, BufferedImage src) {
         return new PixelARGB(src.getRGB(j, i));
     }

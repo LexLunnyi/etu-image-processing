@@ -16,6 +16,10 @@ public class ProcessorMedian implements ImageProcessor {
     }
     
     @Override
+    public void before(BufferedImage src) {
+    }
+    
+    @Override
     public PixelARGB process(int i, int j, BufferedImage src) {
         //Mare sorted set
         SortedSet<Integer> pixels = getWindow(i, j, src);
