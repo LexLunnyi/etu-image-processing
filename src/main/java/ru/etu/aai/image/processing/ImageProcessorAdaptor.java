@@ -1,6 +1,9 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.Options;
 import java.awt.image.BufferedImage;
+import ru.etu.aai.image.processing.utility.ComplexNumber;
+import ru.etu.aai.image.processing.utility.PixelARGB;
 
 /**
  *
@@ -25,6 +28,8 @@ public class ImageProcessorAdaptor {
                 return new ProcessorThreshold(options.getThreshold());
             case EQUALIZATION:
                 return new ProcessorEqualization();
+            case FFT_LOW:
+                return new ProccessorFFTLowPass();
         }
         return new ProcessorStub();
     }
@@ -38,10 +43,27 @@ public class ImageProcessorAdaptor {
         BufferedImage dst = new BufferedImage(w, h, src.getType());
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                dst.setRGB(j, i, proc.process(i, j, src).getPixel());
+                PixelARGB p = (PixelARGB)proc.process(i, j, src);
+                dst.setRGB(j, i, p.getPixel());
             }
         }
+        return dst;
+    }
+    
+    public ComplexNumber[][] process(ComplexNumber[][] src, TransformType type) {
+        ImageProcessor proc = getProcessor(type);
+        proc.before(src);
         
+        int w = src.length;
+        int h = src[0].length;
+        
+        ComplexNumber[][] dst = new ComplexNumber[w][h];
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                ComplexNumber p = (ComplexNumber)proc.process(i, j, src);
+                dst[i][j] = p;
+            }
+        }
         return dst;
     }
 }

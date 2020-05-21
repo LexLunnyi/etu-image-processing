@@ -1,12 +1,13 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.PixelARGB;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Aleksey.Berdnikov
  */
-public class ProcessorEqualization implements ImageProcessor {
+public class ProcessorEqualization implements ImageProcessor<PixelARGB, BufferedImage> {
     int lut[];
 
     @Override

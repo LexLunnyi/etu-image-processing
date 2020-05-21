@@ -1,12 +1,13 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.PixelARGB;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Aleksey.Berdnikov
  */
-public class ProcessorStub implements ImageProcessor {
+public class ProcessorStub implements ImageProcessor<PixelARGB, BufferedImage> {
     @Override
     public void before(BufferedImage src) {
     }

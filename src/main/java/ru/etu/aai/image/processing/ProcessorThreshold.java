@@ -1,12 +1,13 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.PixelARGB;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Aleksey.Berdnikov
  */
-public class ProcessorThreshold implements ImageProcessor {
+public class ProcessorThreshold implements ImageProcessor<PixelARGB, BufferedImage> {
     final int threshold;
 
     public ProcessorThreshold(int threshold) {
