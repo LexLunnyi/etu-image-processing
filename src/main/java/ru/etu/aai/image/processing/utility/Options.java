@@ -1,4 +1,4 @@
-package ru.etu.aai.image.processing;
+package ru.etu.aai.image.processing.utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,10 +10,13 @@ import java.util.Properties;
  * @author Aleksey.Berdnikov
  */
 public class Options {
-    private String image;
-    private String output;
-    private int medianSize;
-    private int laplacianSize;
+    String image;
+    String output;
+    int medianSize;
+    int laplacianSize;
+    int threshold;
+    int fftLowThreshold;
+    int fftHighThreshold;
     
     public Options(String path) {
         Properties prop = new Properties();
@@ -27,7 +30,9 @@ public class Options {
             output = prop.getProperty("output");
             medianSize = Integer.parseInt(prop.getProperty("median.size"));
             laplacianSize = Integer.parseInt(prop.getProperty("laplacian.size"));
-            
+            threshold = Integer.parseInt(prop.getProperty("threshold.value"));
+            fftLowThreshold = Integer.parseInt(prop.getProperty("fft.low.threshold"));
+            fftHighThreshold = Integer.parseInt(prop.getProperty("fft.high.threshold"));
             printProperties();
         } catch (IOException ex) {
             System.out.println("Error read options: " + ex);
@@ -49,6 +54,9 @@ public class Options {
         System.out.println("  output -> " + output);
         System.out.println("  medianSize -> " + medianSize);
         System.out.println("  laplacianSize -> " + laplacianSize);
+        System.out.println("  threshold -> " + threshold);
+        System.out.println("  fftLowThreshold -> " + fftLowThreshold);
+        System.out.println("  fftHighThreshold -> " + fftHighThreshold);
         System.out.println("-------------------------------------------------------");
     }
 
@@ -66,5 +74,17 @@ public class Options {
 
     public int getLaplacianSize() {
         return laplacianSize;
+    }
+
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public int getFftLowThreshold() {
+        return fftLowThreshold;
+    }
+
+    public int getFftHighThreshold() {
+        return fftHighThreshold;
     }
 }

@@ -1,5 +1,6 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.PixelARGB;
 import java.awt.image.BufferedImage;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -8,11 +9,15 @@ import java.util.TreeSet;
  *
  * @author Aleksey.Berdnikov
  */
-public class ProcessorMedian implements ImageProcessor {
+public class ProcessorMedian implements ImageProcessor<PixelARGB, BufferedImage> {
     private final int medianSize;
     
     ProcessorMedian(int size) {
         this.medianSize = size;
+    }
+    
+    @Override
+    public void before(BufferedImage src) {
     }
     
     @Override

@@ -1,13 +1,18 @@
 package ru.etu.aai.image.processing;
 
+import ru.etu.aai.image.processing.utility.PixelARGB;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Aleksey.Berdnikov
  */
-abstract class ProcessorConvolution implements ImageProcessor {
+abstract class ProcessorConvolution implements ImageProcessor<PixelARGB, BufferedImage> {
     protected int[][] kernel;
+    
+    @Override
+    public void before(BufferedImage src) {
+    }
     
     @Override
     public PixelARGB process(int i, int j, BufferedImage src) {

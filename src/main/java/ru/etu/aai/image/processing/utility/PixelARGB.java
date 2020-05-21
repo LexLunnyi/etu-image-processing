@@ -1,4 +1,4 @@
-package ru.etu.aai.image.processing;
+package ru.etu.aai.image.processing.utility;
 
 /**
  *
