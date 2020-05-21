@@ -10,11 +10,13 @@ import java.util.Properties;
  * @author Aleksey.Berdnikov
  */
 public class Options {
-    private String image;
-    private String output;
-    private int medianSize;
-    private int laplacianSize;
-    private int threshold;
+    String image;
+    String output;
+    int medianSize;
+    int laplacianSize;
+    int threshold;
+    int fftLowThreshold;
+    int fftHighThreshold;
     
     public Options(String path) {
         Properties prop = new Properties();
@@ -29,7 +31,8 @@ public class Options {
             medianSize = Integer.parseInt(prop.getProperty("median.size"));
             laplacianSize = Integer.parseInt(prop.getProperty("laplacian.size"));
             threshold = Integer.parseInt(prop.getProperty("threshold.value"));
-            
+            fftLowThreshold = Integer.parseInt(prop.getProperty("fft.low.threshold"));
+            fftHighThreshold = Integer.parseInt(prop.getProperty("fft.high.threshold"));
             printProperties();
         } catch (IOException ex) {
             System.out.println("Error read options: " + ex);
@@ -52,6 +55,8 @@ public class Options {
         System.out.println("  medianSize -> " + medianSize);
         System.out.println("  laplacianSize -> " + laplacianSize);
         System.out.println("  threshold -> " + threshold);
+        System.out.println("  fftLowThreshold -> " + fftLowThreshold);
+        System.out.println("  fftHighThreshold -> " + fftHighThreshold);
         System.out.println("-------------------------------------------------------");
     }
 
@@ -73,5 +78,13 @@ public class Options {
 
     public int getThreshold() {
         return threshold;
+    }
+
+    public int getFftLowThreshold() {
+        return fftLowThreshold;
+    }
+
+    public int getFftHighThreshold() {
+        return fftHighThreshold;
     }
 }

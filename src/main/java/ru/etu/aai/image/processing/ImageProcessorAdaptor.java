@@ -29,7 +29,9 @@ public class ImageProcessorAdaptor {
             case EQUALIZATION:
                 return new ProcessorEqualization();
             case FFT_LOW:
-                return new ProccessorFFTLowPass();
+                return new ProccessorFFTLowPass(options.getFftLowThreshold());
+            case FFT_HIGH:
+                return new ProccessorFFTHighPass(options.getFftHighThreshold());
         }
         return new ProcessorStub();
     }

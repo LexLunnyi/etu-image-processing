@@ -6,13 +6,13 @@ import ru.etu.aai.image.processing.utility.ComplexNumber;
  *
  * @author Aleksey.Berdnikov
  */
-public class ProccessorFFTLowPass extends ProccessorFFTPass {
-    public ProccessorFFTLowPass(int threshold) {
+public class ProccessorFFTHighPass extends ProccessorFFTPass {
+    public ProccessorFFTHighPass(int threshold) {
         super(threshold);
     }
 
     @Override
-    protected ComplexNumber inside(ComplexNumber pixel) {
+    protected ComplexNumber outside(ComplexNumber pixel) {
         return pixel;
     }
 }

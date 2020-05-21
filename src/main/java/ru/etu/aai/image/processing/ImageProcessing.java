@@ -32,10 +32,16 @@ public class ImageProcessing {
         //BufferedImage median = adaptor.process(bw, TransformType.MEDIAN);
         //BufferedImage laplacian = adaptor.process(median, TransformType.LAPLACIAN);
         ComplexNumber[][] fft = FFT.forward(bw);
-        ComplexNumber[][] fftFiltred = adaptor.process(fft, TransformType.FFT_LOW);
         BufferedImage fftSpectrumBefore = FFT.toImage(fft, true);
-        BufferedImage fftSpectrumAfter = FFT.toImage(fftFiltred, true);
-        BufferedImage afterFFT = FFT.inverse(fftFiltred);
+        
+        ComplexNumber[][] fftHighFiltred = adaptor.process(fft, TransformType.FFT_HIGH);
+        BufferedImage fftHighSpectrumAfter = FFT.toImage(fftHighFiltred, true);
+        BufferedImage afterFFTHigh = FFT.inverse(fftHighFiltred);
+        
+        ComplexNumber[][] fftLowFiltred = adaptor.process(fft, TransformType.FFT_LOW);
+        BufferedImage fftLowSpectrumAfter = FFT.toImage(fftLowFiltred, true);
+        BufferedImage afterFFTLow = FFT.inverse(fftLowFiltred);
+        
         //Save results
         ImageIO.write(bw, "png", new File(options.getOutput() + in.getName() + "_bw.png"));
         ImageIO.write(hist, "png", new File(options.getOutput() + in.getName() + "_hist.png"));
@@ -43,8 +49,10 @@ public class ImageProcessing {
         ImageIO.write(eq, "png", new File(options.getOutput() + in.getName() + "_eq.png"));
         ImageIO.write(hist_eq, "png", new File(options.getOutput() + in.getName() + "_hist_eq.png"));
         ImageIO.write(fftSpectrumBefore, "png", new File(options.getOutput() + in.getName() + "_fft.png"));
-        ImageIO.write(fftSpectrumAfter, "png", new File(options.getOutput() + in.getName() + "_fft_after.png"));
-        ImageIO.write(afterFFT, "png", new File(options.getOutput() + in.getName() + "_fft_filtred.png"));
+        ImageIO.write(fftHighSpectrumAfter, "png", new File(options.getOutput() + in.getName() + "_fft_high_after.png"));
+        ImageIO.write(afterFFTHigh, "png", new File(options.getOutput() + in.getName() + "_fft_high_filtred.png"));
+        ImageIO.write(fftLowSpectrumAfter, "png", new File(options.getOutput() + in.getName() + "_fft_low_after.png"));
+        ImageIO.write(afterFFTLow, "png", new File(options.getOutput() + in.getName() + "_fft_low_filtred.png"));
         //ImageIO.write(median, "png", new File(options.getOutput() + in.getName() + "_median.png"));
         //ImageIO.write(laplacian, "png", new File(options.getOutput() + in.getName() + "_laplacian.png"));
     }
